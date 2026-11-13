@@ -22,3 +22,10 @@ export function ensureRenderCall(code: string): string {
   }
   return code;
 }
+
+export const MAX_PROMPT_LENGTH = 500;
+
+/** Unicode 코드 포인트 기준 길이만 검사한다. 필수 입력 검증과는 별개다. */
+export function validatePromptLength(prompt: string): boolean {
+  return Array.from(prompt).length <= MAX_PROMPT_LENGTH;
+}

@@ -1,4 +1,4 @@
-import { stripCodeFences, ensureRenderCall } from './generator';
+import { stripCodeFences, ensureRenderCall, validatePromptLength, MAX_PROMPT_LENGTH } from './generator';
 import { withModelFallback } from './fallback';
 
 // 우선순위 순서. 앞 모델이 실패하면 다음 모델로 폴백한다.
@@ -176,6 +176,13 @@ const server = Bun.serve({
         if (!prompt) {
           return Response.json(
             { error: 'Prompt is required' },
+            { status: 400, headers: CORS_HEADERS }
+          );
+        }
+
+        if (!validatePromptLength(prompt)) {
+          return Response.json(
+            { error: `프롬프트는 ${MAX_PROMPT_LENGTH}자 이하로 입력해주세요.` },
             { status: 400, headers: CORS_HEADERS }
           );
         }

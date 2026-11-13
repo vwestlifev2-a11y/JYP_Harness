@@ -1,5 +1,23 @@
 import { describe, it, expect } from 'vitest';
-import { stripCodeFences, ensureRenderCall } from './generator';
+import { stripCodeFences, ensureRenderCall, validatePromptLength } from './generator';
+
+describe('validatePromptLength', () => {
+  it.each([499, 500])('%i자 프롬프트를 허용한다', (length) => {
+    expect(validatePromptLength('가'.repeat(length))).toBe(true);
+  });
+
+  it('501자 프롬프트를 거절한다', () => {
+    expect(validatePromptLength('가'.repeat(501))).toBe(false);
+  });
+
+  it('이모지도 코드 포인트 하나를 한 글자로 센다', () => {
+    expect(validatePromptLength('😀'.repeat(500))).toBe(true);
+  });
+
+  it('이모지를 포함해 501자를 넘으면 거절한다', () => {
+    expect(validatePromptLength('가'.repeat(500) + '😀')).toBe(false);
+  });
+});
 
 describe('stripCodeFences', () => {
   it('언어 태그가 붙은 코드펜스를 제거한다', () => {
