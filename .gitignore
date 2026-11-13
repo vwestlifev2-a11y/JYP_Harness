@@ -44,3 +44,36 @@ lerna-debug.log*
 
 # 의존성 및 산출물 내부를 포함해 환경 파일은 계속 제외한다
 .env
+
+# Sensitive-file policy overrides bulk dependency/artifact inclusion.
+.[eE][nN][vV]*
+*.[eE][nN][vV]
+*.[eE][nN][vV].*
+*[cC][rR][eE][dD][eE][nN][tT][iI][aA][lL]*
+*[sS][eE][cC][rR][eE][tT]*
+.ssh/
+.aws/
+.gnupg/
+.kube/
+.npmrc
+.pypirc
+.netrc
+auth.json
+token
+token.*
+tokens
+tokens.*
+*service[-_]account*.json
+*.[pP][eE][mM]
+*.[kK][eE][yY]
+*.[pP]12
+*.[pP][fF][xX]
+*.[jJ][kK][sS]
+*.[kK][eE][yY][sS][tT][oO][rR][eE]
+id_rsa*
+id_ed25519*
+id_ecdsa*
+id_dsa*
+
+# Synthetic sandbox permission probes are local verification artifacts.
+.permission-probe-*/
