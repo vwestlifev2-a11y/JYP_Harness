@@ -85,6 +85,7 @@ bun run test:watch
 
 - 타입만 가져올 때 `import type`을 사용한다. 기존 TypeScript 엄격 옵션을 완화해 오류를 숨기지 않는다. 근거: `src/App.tsx:5`, `tsconfig.app.json:12`, `tsconfig.app.json:22`.
 - 커밋, 커밋해줘, Git 변경사항 저장 요청 시 [commit 스킬](.agents/skills/commit/SKILL.md)을 따른다. 논리적 범위와 `feat/fix/refactor/chore: 한국어 요약` 메시지를 제안한 뒤 사용자 승인 후 커밋한다. 일반 파일 저장과 스킬 작성은 커밋 요청으로 해석하지 않는다.
+- PR 생성 요청 시 [create-pr 스킬](.agents/skills/create-pr/SKILL.md)을 따른다. 전담 서브 에이전트가 대상 프로젝트의 기여 언어에 맞는 템플릿을 선택해 PR을 생성한다. 스킬 작성 요청만으로 PR을 생성하지 않는다.
 - 커밋 요청은 `react-component-generator-main` 작업 저장소와 그 안의 `harnes_engineering/` 저장소를 모두 대상으로 한다. 내부 저장소에서 작업 중이면 상위 작업 저장소도 함께 확인한다. 이 두 저장소를 포함할지 매번 다시 묻지 않는다.
 - 공유 변경은 두 저장소에 동기화하고 저장소별 diff·스테이징을 확인한다. 기존 변경과 충돌하면 임의로 덮어쓰지 않는다. `.git`, `.env`를 복사하거나 상위 저장소에 내부 저장소의 gitlink를 추가하지 않는다.
 - 사용자 지정 저장 범위: 다음 커밋부터 설치된 의존성 `node_modules/`와 빌드 산출물 `dist/`, `dist-ssr/`도 존재하는 경우 두 저장소에 동기화하고 커밋 범위에 포함한다. `.env`는 계속 제외하고 내용을 출력하지 않는다.
